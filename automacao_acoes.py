@@ -65,13 +65,13 @@ for i in dados_acoes:
     corpo = f"""
 Prezado gestor
 
-Segue as analises da ação {i['nome']}
+Segue as análises da ação {i['nome']}
 
 Atual = {i['atual']}
 Maxima = {i['maxima']}
-Minima = {[i['minima']]}    
+Minima = {i['minima']}    
 
-Qualquer dúvida estarei a disposição.
+Qualquer dúvida estarei a disposição!
 """
     copy(corpo)
     pa.hotkey('ctrl', 'v')
