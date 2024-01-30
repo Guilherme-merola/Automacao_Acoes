@@ -15,7 +15,7 @@ from pyperclip import copy
 from datetime import datetime as dt
 
 
-data_atual = dt.now().date()
+data_atual = dt.now().date().strftime("%d/%m/%Y")
 nomes_acoes = [x for x in input("Digite os nomes dos tickers separados por espaço ").split(" ")]
 email = input("Digite o email do destinatário ")
 dados_acoes = []
@@ -30,7 +30,7 @@ for nome_acao in nomes_acoes:
     minima = fechamento.min()
     atual = fechamento.iloc[-1]
     
-    dados_acoes.append({'nome': nome_acao, 'atual': atual, 'maxima': maxima, 'minima': minima})
+    dados_acoes.append({'nome': nome_acao.upper(), 'atual': atual, 'maxima': maxima, 'minima': minima})
 
 
 # Automatizando o envio de email
@@ -56,7 +56,7 @@ for i in dados_acoes:
     pa.press('tab')
 
     # Colocando o assunto
-    assunto = f"Fechamento da ação {i['nome']} do dia {data_atual.day}/{data_atual.month}/{data_atual.year}"
+    assunto = f"Fechamento da ação {i['nome']} do dia {data_atual}"
     copy(assunto)
     pa.hotkey('ctrl', 'v')
     pa.press('tab')
@@ -70,19 +70,8 @@ Segue as analises da ação {i['nome']}
 Atual = {i['atual']}
 Maxima = {i['maxima']}
 Minima = {[i['minima']]}    
-Prezado gestor
 
-Segue as analises da ação PETR4.SA
-
-Atual = 39.959999084472656
-Maxima = 39.959999084472656
-Minima = [27.2633056640625]
-
-Qualquer dúvida estou a disposição!
-
-
-
-Qualquer dúvida estou a disposição!
+Qualquer dúvida estarei a disposição.
 """
     copy(corpo)
     pa.hotkey('ctrl', 'v')
